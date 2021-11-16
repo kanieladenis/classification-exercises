@@ -17,8 +17,8 @@ def prep_titanic():
     drop_col = ['embarked','fare', 'class', 'deck', 'age']
     df = df.drop(columns = drop_col)
     df['embark_town'] = df.embark_town.fillna(value='Southampton')
-    dummies_df = pd.get_dummies(df, columns = ['sex', 'embark_town'], drop_first=[True,True])
-    df = pd.concat([df,dummies_df], axis=1)
+    dummy_cols = pd.get_dummies(df[['sex', 'embark_town']], drop_first=True)
+    df = pd.concat([df, dummy_cols], axis=1)
     return df
 
 
@@ -75,3 +75,34 @@ def split_titanic(df):
                                       random_state=123,
                                       stratify=train_validate.survived)
     return train, validate, test
+
+
+
+def split_iris(df):
+    train_validate, test = train_test_split(df, 
+                                             test_size=.2, 
+                                             random_state=123, 
+                                             stratify=df.species)
+    train, validate = train_test_split(train_validate,
+                                      test_size=.3,
+                                      random_state=123,
+                                      stratify=train_validate.species)
+    return train, validate, test
+
+
+
+def split_telco(df):
+    train_validate, test = train_test_split(df, 
+                                             test_size=.2, 
+                                             random_state=123, 
+                                             stratify=df.churn)
+    train, validate = train_test_split(train_validate,
+                                      test_size=.3,
+                                      random_state=123,
+                                      stratify=train_validate.churn)
+    return train, validate, test
+
+
+
+
+
