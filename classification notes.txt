@@ -1,0 +1,92 @@
+['customer_id',
+ 'gender',
+ 'senior_citizen',
+ 'partner',
+ 'dependents',
+ 'tenure',
+ 'phone_service',
+ 'multiple_lines',
+ 'online_security',
+ 'online_backup',
+ 'device_protection',
+ 'tech_support',
+ 'streaming_tv',
+ 'streaming_movies',
+ 'paperless_billing',
+ 'monthly_charges',
+ 'total_charges',
+ 'churn',
+ 'contract_type',
+ 'internet_service_type',
+ 'payment_type',
+ 'senior_citizen',
+ 'gender_Male',
+ 'partner_Yes',
+ 'dependents_Yes',
+ 'phone_service_Yes',
+ 'multiple_lines_No phone service',
+ 'multiple_lines_Yes',
+ 'online_security_No internet service',
+ 'online_security_Yes',
+ 'online_backup_No internet service',
+ 'online_backup_Yes',
+ 'device_protection_No internet service',
+ 'device_protection_Yes',
+ 'tech_support_No internet service',
+ 'tech_support_Yes',
+ 'streaming_tv_No internet service',
+ 'streaming_tv_Yes',
+ 'streaming_movies_No internet service',
+ 'streaming_movies_Yes',
+ 'paperless_billing_Yes',
+ 'churn_Yes',
+ 'contract_type_One year',
+ 'contract_type_Two year',
+ 'internet_service_type_Fiber optic',
+ 'internet_service_type_None',
+ 'payment_type_Credit card (automatic)',
+ 'payment_type_Electronic check',
+ 'payment_type_Mailed check']
+
+
+
+
+# id columns to keep
+cols_counts = ['sepal_length',
+ 'sepal_width',
+ 'petal_length',
+ 'petal_width',]
+
+
+# create subset of train df
+train_cols = train[cols_counts]
+train_cols.head()
+
+
+# create histograms for each column id'd
+for col in train_cols:
+    plt.hist(train_cols[col])
+    plt.title(col)
+    plt.show()
+
+
+# create boxplot for each column id'd
+for col in train_cols:
+    plt.boxplot(train_cols[col])
+    plt.title(col)
+    plt.show()
+
+
+
+- gender are almost even
+- over twice as many non-seniors as seniors
+- no significant difference between partners to non-partners
+- over twice as many non-dependents to dependents
+- majority of tenure is at 0 month and 70 month, no significant difference in the between  months
+- 6 times as many customer have phone service
+- No sig difference between muliple line
+- twice as many do not have online_security as do. No internet service is half of no
+- No sig diff between online_backup
+- no sig diff between device_protection
+- less than twice as many do not have tech_support than do
+- no sig diff between streaming tv
