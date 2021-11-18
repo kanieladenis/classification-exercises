@@ -3,17 +3,17 @@ from sklearn.model_selection import train_test_split
 import acquire
 
 def prep_iris():
-    df = acquire.get_iris_data()
+    df = acquire.get_iris()
     df = df.drop(columns=['species_id','measurement_id'])
     df = df.rename(columns={'species_name':'species'})
     df_species = pd.get_dummies(df.species, prefix='is')
     df = pd.concat([df, df_species], axis=1)
     return df
 
-
+#-------------------------------------------------------------------
 
 def prep_titanic():
-    df = acquire.get_titanic_data()
+    df = acquire.get_titanic()
     drop_col = ['embarked','fare', 'class', 'deck', 'age']
     df = df.drop(columns = drop_col)
     df['embark_town'] = df.embark_town.fillna(value='Southampton')
@@ -21,10 +21,10 @@ def prep_titanic():
     df = pd.concat([df, dummy_cols], axis=1)
     return df
 
-
+#-------------------------------------------------------------------
 
 def prep_telco():
-    df = acquire.get_telco_data()
+    df = acquire.get_telco()
     # id cols to drop
     drop_cols = ['internet_service_type_id',
              'internet_service_type_id.1',
@@ -63,7 +63,7 @@ def prep_telco():
     df = pd.concat([df, dummies_df], axis=1)
     return df
 
-
+#-------------------------------------------------------------------
 
 def split_titanic(df):
     train_validate, test = train_test_split(df, 
@@ -76,7 +76,7 @@ def split_titanic(df):
                                       stratify=train_validate.survived)
     return train, validate, test
 
-
+#-------------------------------------------------------------------
 
 def split_iris(df):
     train_validate, test = train_test_split(df, 
@@ -89,7 +89,7 @@ def split_iris(df):
                                       stratify=train_validate.species)
     return train, validate, test
 
-
+#-------------------------------------------------------------------
 
 def split_telco(df):
     train_validate, test = train_test_split(df, 
@@ -102,7 +102,7 @@ def split_telco(df):
                                       stratify=train_validate.churn)
     return train, validate, test
 
-
+#-------------------------------------------------------------------
 
 
 
