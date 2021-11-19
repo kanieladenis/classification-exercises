@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="sex_male <= 0.5\ngini = 0.473\nsamples = 498\nvalue = [307, 191]", fillcolor="#f5cfb4"] ;
+1 [label="pclass <= 2.5\ngini = 0.365\nsamples = 175\nvalue = [42, 133]", fillcolor="#78bced"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="parch <= 1.5\ngini = 0.081\nsamples = 94\nvalue = [4, 90]", fillcolor="#42a1e6"] ;
+1 -> 2 ;
+3 [label="gini = 0.071\nsamples = 81\nvalue = [3, 78]", fillcolor="#41a1e6"] ;
+2 -> 3 ;
+4 [label="gini = 0.142\nsamples = 13\nvalue = [1, 12]", fillcolor="#49a5e7"] ;
+2 -> 4 ;
+5 [label="embark_town_Southampton <= 0.5\ngini = 0.498\nsamples = 81\nvalue = [38, 43]", fillcolor="#e8f4fc"] ;
+1 -> 5 ;
+6 [label="gini = 0.397\nsamples = 33\nvalue = [9, 24]", fillcolor="#83c2ef"] ;
+5 -> 6 ;
+7 [label="gini = 0.478\nsamples = 48\nvalue = [29, 19]", fillcolor="#f6d4bb"] ;
+5 -> 7 ;
+8 [label="pclass <= 1.5\ngini = 0.295\nsamples = 323\nvalue = [265, 58]", fillcolor="#eb9d64"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="sibsp <= 1.5\ngini = 0.462\nsamples = 69\nvalue = [44, 25]", fillcolor="#f4c9aa"] ;
+8 -> 9 ;
+10 [label="gini = 0.468\nsamples = 67\nvalue = [42, 25]", fillcolor="#f4ccaf"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 2\nvalue = [2, 0]", fillcolor="#e58139"] ;
+9 -> 11 ;
+12 [label="parch <= 0.5\ngini = 0.226\nsamples = 254\nvalue = [221, 33]", fillcolor="#e99457"] ;
+8 -> 12 ;
+13 [label="gini = 0.195\nsamples = 219\nvalue = [195, 24]", fillcolor="#e89151"] ;
+12 -> 13 ;
+14 [label="gini = 0.382\nsamples = 35\nvalue = [26, 9]", fillcolor="#eead7e"] ;
+12 -> 14 ;
+}
