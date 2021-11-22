@@ -50,20 +50,19 @@ def clean_titanic(df):
     # Reduce obvious noise
     df = df.set_index("passenger_id")
     
-    # Drops columns that are already represented by other columns
-    cols_to_drop = ['deck', 'embarked', 'class', 'sex']
-    df = df.drop(columns=cols_to_drop)
-
-    # Fills the small number of null values for embark_town with the mode
-    df['embark_town'] = df.embark_town.fillna(value='Southampton')
-    
     # Uses one-hot encoding to create dummies of string columns for future modeling 
     dummy_df = pd.get_dummies(df[['sex', 'embark_town']], dummy_na=False, drop_first=[True, True])
     df = pd.concat([df, dummy_df], axis=1)
     
-
-
+    # Fills the small number of null values for embark_town with the mode
+    df['embark_town'] = df.embark_town.fillna(value='Southampton')
+    
+    # Drops columns that are already represented by other columns
+    cols_to_drop = ['deck', 'embarked', 'class']
+    df = df.drop(columns=cols_to_drop)
+        
     return df
+
 
 
 def split_titanic(df):
@@ -85,9 +84,13 @@ def impute_titanic_mode(train, validate, test):
     Imputes that value into all three sets and returns all three sets
     '''
     imputer = SimpleImputer(missing_values = np.nan, strategy='most_frequent')
+    
     train[['embark_town']] = imputer.fit_transform(train[['embark_town']])
+    
     validate[['embark_town']] = imputer.transform(validate[['embark_town']])
+    
     test[['embark_town']] = imputer.transform(test[['embark_town']])
+    
     return train, validate, test
 
 
@@ -120,10 +123,8 @@ def prep_titanic(df):
     '''
     df = clean_titanic(df)
 
-    train, validate, test = split_titanic(df)
-    
-    train, validate, test = impute_titanic_mode(train, validate, test)
-    
+    train, validate, test = split_titanic(df)    
+  
     train, validate, test = impute_mean_age(train, validate, test)
 
     return train, validate, test
